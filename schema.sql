@@ -9,7 +9,7 @@ CREATE TABLE notes (
   title varchar(255) NOT NULL,
   category varchar(255) NOT NULL,
   tagline varchar(255) NOT NULL,
-  note varchar(255) NOT NULL,
+  note varchar(1024) NOT NULL,
   status ENUM('None', 'Hidden', 'Starred') NOT NULL,
   PRIMARY KEY (id)
 );
