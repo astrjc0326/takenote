@@ -22,3 +22,19 @@ app.get('/api/notes', (req, res) => {
     }
   })
 });
+
+app.post('/api/notes', (req, res) => {
+  console.log('post request');
+  console.log(req.body)
+  let string = 'INSERT INTO notes (title, category, tagline, note) VALUES (?, ?, ?, ?)'
+  let arg = [req.body.title, req.body.category, req.body.tagline, req.body.note]
+  console.log(res.data);
+  db.query(string, arg, (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('created note')
+      res.send(201)
+    }
+  })
+})
