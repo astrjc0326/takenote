@@ -35,7 +35,9 @@ class Notes extends React.Component {
    </div>
   )
   if (this.state.click) {
-    return(<div><NoteView note={this.state.note}/></div>)
+    return(<div><NoteView note={this.state.note}
+      changeHidden={this.props.changeHidden}
+      changeStarred={this.props.changeStarred}/></div>)
   }
   return (
     <div>

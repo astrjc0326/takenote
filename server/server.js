@@ -37,4 +37,30 @@ app.post('/api/notes', (req, res) => {
       res.send(201)
     }
   })
-})
+});
+
+app.patch('/api/notes/hidden/:id', (req, res) => {
+  console.log('patch request')
+  id = req.params.id
+  let getString = 'UPDATE notes SET status = "Hidden" where id = ?'
+  db.query(getString, id, (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(result)
+    }
+  })
+});
+app.patch('/api/notes/starred/:id', (req, res) => {
+  console.log('patch request')
+  id = req.params.id
+  let getString = 'UPDATE notes SET status = "Starred" where id = ?'
+  db.query(getString, id, (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(result)
+    }
+  })
+});
+

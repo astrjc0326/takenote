@@ -13,6 +13,7 @@ class Note extends React.Component {
       starred: true,
       hidden: false
     })
+    this.props.changeStarred(this.props.note.id)
   }
 
   hiddenClick() {
@@ -20,6 +21,7 @@ class Note extends React.Component {
       hidden: true,
       starred: false
     })
+    this.props.changeHidden(this.props.note.id)
   }
 
   render() {

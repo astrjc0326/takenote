@@ -34,14 +34,30 @@ class App extends React.Component {
     console.log('note: ', note)
     let url='/api/notes'
     let testNote = {title: 'd', category: 'd', tagline: 'd', note: 'd'}
-    axios.post(url, testNote)
+    axios.post(url, note)
     .then(res => {
       console.log('message posted')
       this.getNote()
     })
   }
 
-  changePage(page){
+  changeHidden(id) {
+    console.log('change state, id: ', id);
+    let url=`api/notes/hidden/${id}`
+    axios.patch(url)
+    .then(res=> {
+      this.getNote()
+    })
+  }
+  changeStarred(id) {
+    console.log('change state, id: ', id);
+    let url=`api/notes/starred/${id}`
+    axios.patch(url)
+    .then(res=> {
+      this.getNote()
+    })
+  }
+  changePage(page) {
     this.setState({
       page: page
     })
@@ -49,7 +65,9 @@ class App extends React.Component {
 
   pageRouter(){
     if(this.state.page === 'list'){
-      return <Notes notes={this.state.notes}/>
+      return <Notes notes={this.state.notes}
+      changeHidden={this.changeHidden.bind(this)}
+      changeStarred={this.changeStarred.bind(this)}/>
     } else if (this.state.page === 'newNote'){
       return <AddNote addNote={this.addNote}/>
     }
