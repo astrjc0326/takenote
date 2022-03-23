@@ -7,4 +7,7 @@ const db = mysql.createConnection({
   database: 'takenote'
 });
 
+
+
+
 module.exports = db;
