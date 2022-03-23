@@ -3,9 +3,21 @@ import React from 'react';
 class Note extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hidden: false,
-      starred: false,
+    if (this.props.note.status === 'Hidden') {
+      this.state = {
+        hidden: true,
+        starred: false,
+      }
+    } else if (this.props.note.status === 'Starred') {
+      this.state = {
+        hidden: false,
+        starred: true,
+      }
+    } else {
+      this.state = {
+        hidden: false,
+        starred: true,
+      }
     }
   }
   starredClick() {
