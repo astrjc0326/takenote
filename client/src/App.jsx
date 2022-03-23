@@ -10,8 +10,14 @@ class App extends React.Component {
       page: 'list',
       notes: []
     };
+    this.getNote=this.getNote.bind(this)
+    this.addNote=this.addNote.bind(this)
   }
   componentDidMount() {
+    this.getNote()
+  }
+
+  getNote() {
     let url='/api/notes'
     axios.get(url)
     .then(res => {
@@ -23,6 +29,18 @@ class App extends React.Component {
     })
     .catch()
   }
+
+  addNote(note) {
+    console.log('note: ', note)
+    let url='/api/notes'
+    let testNote = {title: 'd', category: 'd', tagline: 'd', note: 'd'}
+    axios.post(url, testNote)
+    .then(res => {
+      console.log('message posted')
+      this.getNote()
+    })
+  }
+
   changePage(page){
     this.setState({
       page: page
@@ -33,7 +51,7 @@ class App extends React.Component {
     if(this.state.page === 'list'){
       return <Notes notes={this.state.notes}/>
     } else if (this.state.page === 'newNote'){
-      return <AddNote/>
+      return <AddNote addNote={this.addNote}/>
     }
   }
 
