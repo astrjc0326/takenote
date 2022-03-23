@@ -63,3 +63,11 @@
 .button:hover{
   box-shadow: 2px 2px 3px #cacaca;
 }
+
+.starred {
+  background-color: yellow;
+}
+
+.hidden {
+  background-color: aqua;
+}

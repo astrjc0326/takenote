@@ -8,7 +8,23 @@ class Note extends React.Component {
       starred: false,
     }
   }
+  starredClick() {
+    this.setState({
+      starred: true,
+      hidden: false
+    })
+  }
+
+  hiddenClick() {
+    this.setState({
+      hidden: true,
+      starred: false
+    })
+  }
+
   render() {
+    let starred = (this.state.starred) ? 'starred': 'nonstarred'
+    let hiddened = (this.state.hidden) ? 'hidden' : 'display'
     return(
       <div className="noteView">
             <div className="noteViewTitle">
@@ -19,8 +35,8 @@ class Note extends React.Component {
             <div className="note-desc">{this.props.note.tagline}</div>
             <div className="note">{this.props.note.note}</div>
             </div>
-            <button>hidden</button>
-            <button>star</button>
+            <button className={hiddened} onClick={this.hiddenClick.bind(this)}>hidden</button>
+            <button className={starred} onClick={this.starredClick.bind(this)}>star</button>
       </div>
     )
   }
